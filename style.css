@@ -1,0 +1,684 @@
+/* style.css (Embedded) */
+
+:root {
+    /* Backgrounds */
+    --primary-bg: #050510;      /* Interstellar void (almost pure black with a whisper of violet) */
+    --secondary-bg: #0e0e1a;    /* Deep moon-shadow blue for sections */
+
+    /* Text */
+    --primary-text: #dcdcf2;    /* Starlight silver */
+    --secondary-text: #8484a0;  /* Dimmed asteroid dust */
+
+    /* Accents */
+    --accent-color: #ff6bcb;    /* Pulsar pink */
+    --accent-hover-bg: rgba(255, 107, 203, 0.12); /* Hover glow */
+
+    --neuron-bg: rgba(255, 107, 203, 0.8);  /* Pulsar neuron glow */
+    --neuron-shadow: rgba(255, 107, 203, 0.45); /* Outer glow */
+
+    /* Gradients */
+    --line-gradient-start: #ff6bcb;
+    --line-gradient-end: rgba(255, 107, 203, 0);
+
+    /* Extra Cosmic Options */
+    --cosmic-blue: #7df9ff;     /* Neon comet tail */
+    --solar-flare: #ffb347;     /* Flare orange for critical actions */
+    --gravity-well: #372b61;    /* Muted purple-black for subtle contrast blocks */
+}
+
+
+body {
+    margin: 0;
+    overflow: hidden;
+    overflow-y: scroll;
+    background-color: var(--primary-bg);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-text);
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+/* Navbar Styles */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background-color: rgba(34, 34, 34, 0);
+    padding-top: 1rem;
+    z-index: 10;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    backdrop-filter: blur(6px);
+}
+
+nav a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    font-size: 1.1em;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin-right: 2rem;
+
+}
+
+nav a:hover {
+    color: #fff;
+    background-color: var(--accent-hover-bg);
+}
+
+#neural-web {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-color: var(--secondary-bg);
+}
+
+#neural-web-skill {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-color: var(--secondary-bg);
+}
+
+.neuron-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    will-change: transform;
+    opacity: 0;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    
+}
+
+.neuron-container.loaded {
+    opacity: 1;
+}
+
+.neuron {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--neuron-bg);
+    box-shadow: 0 0 15px 8px var(--neuron-shadow);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, width 0.5s ease, height 0.5s ease,
+        border-radius 0.5s ease, color 0.5s ease;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: transparent;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-align: center;
+    padding: 8px;
+    box-sizing: border-box;
+    line-height: 1.2;
+    overflow: hidden;
+    white-space: pre-wrap;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(2px);
+}
+
+
+.neuron:hover {
+    transform: scale(1.25);
+    box-shadow: 0 0 25px 15px rgba(102, 252, 241, 0.75);
+}
+
+
+.neuron-title {
+    font-size: 1em;
+    margin-top: 8px;
+    color: #aaaaaa;
+    text-shadow: 1px 1px 2px #000;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+    position: relative;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    scale: 0;
+}
+
+.neuron-container:hover .neuron-title {
+    opacity: 1;
+    scale: 1;
+    font-size: 1em;
+
+}
+
+
+.neuron.expanded {
+    width: 250px;
+    height: 250px;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 1em;
+    padding: 15px;
+    white-space: pre-wrap;
+    overflow: auto;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.3);
+    z-index: 6;
+
+}
+
+/* Enhanced Button style */
+.neuron.expanded::after {
+    content: 'Learn More';
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 15px;
+    background-color: var(--accent-color);
+    color: #222;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    font-size: 0.85em;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+}
+
+.neuron.expanded:hover::after {
+    opacity: 1;
+    background-color: #45a29e;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
+
+}
+
+
+.neuron.expanded:hover {
+    box-shadow: 0 0 30px 20px rgba(102, 252, 241, 0.8);
+}
+
+
+
+.line {
+    position: fixed;
+    height: 1.5px;
+    background: linear-gradient(to right, var(--line-gradient-start), var(--line-gradient-end));
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: -1;
+    filter: blur(0.8px);
+}
+
+
+@media (max-width: 768) {
+    .neuron {
+        width: 40px;
+        height: 40px;
+    }
+
+    .neuron.expanded {
+        width: 200px;
+        height: 200px;
+        font-size: 0.9em;
+    }
+
+    /* responsive for Button on a Neuron Mobile device screen  */
+    .neuron.expanded::after {
+        font-size: 0.75em;
+    }
+}
+
+
+.debug-circle {
+    position: absolute;
+    border: 2px dashed red;
+    pointer-events: none;
+}
+
+/* Stars */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle 2s infinite;
+}
+
+@keyframes twinkle {
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.about-me {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    top: 200%;
+    background-color: var(--secondary-bg);
+    border-top: 2.5px solid transparent;
+    border-image: radial-gradient(circle, var(--accent-color) 0%, rgba(102, 252, 241, 0) 100%) 1;
+    backdrop-filter: blur(0.8px);
+
+
+}
+
+/* Minimalist About Me Section */
+.about-me-section.minimalist {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+    padding: 0px 0px;
+    color: var(--primary-text);
+    text-align: center;
+    margin-top: 60px;
+}
+
+.about-me-section.minimalist .about-me-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+.about-me-section.minimalist h2 {
+    font-size: 3em;
+    margin-bottom: 30px;
+    color: var(--accent-color);
+    text-shadow: 1px 1px 3px #000;
+}
+
+.about-me-section.minimalist p {
+    font-size: 1.2em;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.about-me-section.minimalist .social-links {
+    margin-top: 40px;
+}
+
+.about-me-section.minimalist .social-links a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+    color: var(--accent-color);
+    text-decoration: none;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    font-size: 1.3em;
+}
+
+.about-me-section.minimalist .social-links a:hover {
+    background-color: rgba(102, 252, 241, 0.2);
+    color: #fff;
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .about-me-section.minimalist {
+        padding: 50px 10px;
+        margin-top: 50px;
+    }
+
+    .about-me-section.minimalist h2 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+
+    .about-me-section.minimalist p {
+        font-size: 1.1em;
+        margin-bottom: 20px;
+    }
+
+    .about-me-section.minimalist .social-links a {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1em;
+    }
+}
+
+.contact-me {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    top: 300%;
+    background-color: var(--secondary-bg);
+    border-top: 2.5px solid transparent;
+    border-image: radial-gradient(circle, var(--accent-color) 0%, rgba(102, 252, 241, 0) 100%) 1;
+    backdrop-filter: blur(0.8px);
+}
+
+/* Minimalist Contact Section */
+.contact-section.minimalist {
+    position: relative;
+    z-index: 5;
+    padding: 80px 20px;
+    color: var(--primary-text);
+    text-align: center;
+    margin-top: 60px;
+}
+
+.contact-section.minimalist .contact-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+.contact-section.minimalist h2 {
+    font-size: 3em;
+    margin-bottom: 30px;
+    color: var(--accent-color);
+    text-shadow: 1px 1px 3px #000;
+}
+
+.contact-section.minimalist p {
+    font-size: 1.2em;
+    line-height: 1.7;
+    margin-bottom: 40px;
+}
+
+.contact-section.minimalist .contact-links {
+    display: flex;
+    flex-direction: row;
+    /* Stack the links */
+    align-items: center;
+    /* Center items horizontally */
+    gap: 1rem;
+}
+
+.contact-section.minimalist .contact-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* Center the content */
+    width: auto;
+    /* Adjust width to content */
+    padding: 10px 20px;
+    /* margin: 0 1rem; */
+    color: var(--accent-color);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    font-size: 1.1em;
+    border: 1px solid var(--accent-color);
+    /* Add a subtle border */
+}
+
+.contact-section.minimalist .contact-links a i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.contact-section.minimalist .contact-links a:hover {
+    background-color: var(--accent-hover-bg);
+    color: #fff;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .contact-section.minimalist {
+        padding: 50px 10px;
+        margin-top: 50px;
+    }
+
+    .contact-section.minimalist h2 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+
+    .contact-section.minimalist p {
+        font-size: 1.1em;
+        margin-bottom: 30px;
+    }
+
+    .contact-section.minimalist .contact-links a {
+        font-size: 1em;
+        padding: 8px 15px;
+    }
+
+    .contact-section.minimalist .contact-links a i {
+        font-size: 1.1em;
+    }
+}
+
+
+/* Minimalist Skill Section */
+.skill-section.minimalist {
+    position: relative;
+    z-index: 5;
+    padding: 80px 20px;
+    color: var(--primary-text);
+    text-align: center;
+    margin-top: 60px;
+}
+
+.skill-section.minimalist .skill-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+.skill-section.minimalist h2 {
+    font-size: 3em;
+    margin-bottom: 30px;
+    color: var(--accent-color);
+    text-shadow: 1px 1px 3px #000;
+}
+
+.skill-section.minimalist p {
+    font-size: 1.2em;
+    line-height: 1.7;
+    margin-bottom: 40px;
+}
+
+.skill-section.minimalist .skill-links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* Allow items to wrap to the next line */
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.skill-section.minimalist .skill-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    padding: 10px 20px;
+    color: var(--accent-color);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    font-size: 1.1em;
+    border: 1px solid var(--accent-color);
+}
+
+.skill-section.minimalist .skill-links a i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.skill-section.minimalist .skill-links a svg {
+    margin-right: 10px;
+    height: 1.2em;
+    width: 1.2em;
+}
+
+.skill-section.minimalist .skill-links a:hover {
+    background-color: var(--accent-hover-bg);
+    color: #fff;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .skill-section.minimalist {
+        padding: 50px 10px;
+        margin-top: 50px;
+    }
+
+    .skill-section.minimalist h2 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+
+    .skill-section.minimalist p {
+        font-size: 1.1em;
+        margin-bottom: 30px;
+    }
+
+    .skill-section.minimalist .skill-links a {
+        font-size: 1em;
+        padding: 8px 15px;
+    }
+
+    .skill-section.minimalist .skill-links a i {
+        font-size: 1.1em;
+    }
+}
+
+.meskills {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    top: 100%;
+    background-color: var(--secondary-bg);
+    border-top: 2.5px solid transparent;
+    border-image: radial-gradient(circle, var(--accent-color) 0%, rgba(102, 252, 241, 0) 100%) 1;
+    backdrop-filter: blur(0.8px);
+}
+
+#unsupported-device {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0b0b0f;
+    color: #ff6bcb;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    padding: 2rem;
+    box-sizing: border-box;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+#unsupported-device i {
+    font-size: 3rem;
+    color: #ff6bcb;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+/* Show warning only for screens below 768px */
+@media (max-width: 900px) {
+    #unsupported-device {
+        display: flex;
+    }
+
+    /* Optional: Hide rest of site */
+    nav,
+    #neural-web,
+    #neural-web-skill,
+    .meskills,
+    .about-me,
+    .contact-me {
+        display: none !important;
+    }
+}
+
+
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    position: absolute;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    .label-h1{
+        font-size: xx-large;
+    }
+}
