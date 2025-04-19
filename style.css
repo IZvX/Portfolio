@@ -2,29 +2,30 @@
 
 :root {
     /* Backgrounds */
-    --primary-bg: #050510;      /* Interstellar void (almost pure black with a whisper of violet) */
-    --secondary-bg: #0e0e1a;    /* Deep moon-shadow blue for sections */
+    --primary-bg: #1f1a12;      /* Ombre brun foncé (profondeur et richesse) */
+    --secondary-bg: #2c2418;    /* Brun noisette foncé pour les sections */
 
     /* Text */
-    --primary-text: #dcdcf2;    /* Starlight silver */
-    --secondary-text: #8484a0;  /* Dimmed asteroid dust */
+    --primary-text: #f5f0e6;    /* Beige ivoire */
+    --secondary-text: #cbbf9f;  /* Beige poussiéreux pour texte secondaire */
 
     /* Accents */
-    --accent-color: #ff6bcb;    /* Pulsar pink */
-    --accent-hover-bg: rgba(255, 107, 203, 0.12); /* Hover glow */
+    --accent-color: #d4af37;    /* Doré classique */
+    --accent-hover-bg: rgba(212, 175, 55, 0.15); /* Lueur dorée au survol */
 
-    --neuron-bg: rgba(255, 107, 203, 0.8);  /* Pulsar neuron glow */
-    --neuron-shadow: rgba(255, 107, 203, 0.45); /* Outer glow */
+    --neuron-bg: rgba(212, 175, 55, 0.85);  /* Neuron doré */
+    --neuron-shadow: rgba(212, 175, 55, 0.5); /* Ombre externe dorée */
 
     /* Gradients */
-    --line-gradient-start: #ff6bcb;
-    --line-gradient-end: rgba(255, 107, 203, 0);
+    --line-gradient-start: #d4af37;
+    --line-gradient-end: rgba(212, 175, 55, 0);
 
-    /* Extra Cosmic Options */
-    --cosmic-blue: #7df9ff;     /* Neon comet tail */
-    --solar-flare: #ffb347;     /* Flare orange for critical actions */
-    --gravity-well: #372b61;    /* Muted purple-black for subtle contrast blocks */
+    /* Extra Golden Options */
+    --cosmic-blue: #ffe8b0;     /* Doré pâle pour éléments lumineux */
+    --solar-flare: #f7c873;     /* Doré solaire pour actions critiques */
+    --gravity-well: #3b2f20;    /* Brun chaud pour blocs subtils */
 }
+
 
 
 body {
